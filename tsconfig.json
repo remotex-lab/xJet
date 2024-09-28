@@ -1,0 +1,71 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "target": "ESNext",
+        "module": "ESNext",
+        "baseUrl": ".",
+        "outDir": "dist",
+        "rootDir": "src",
+        "declaration": true,
+        "skipLibCheck": true,
+        "importHelpers": true,
+        "isolatedModules": false,
+        "esModuleInterop": false,
+        "moduleDetection": "force",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": [
+            "DOM",
+            "ESNext"
+        ],
+        "types": [
+            "node"
+        ],
+        "paths": {
+            "@const/*": [
+                "src/core/const/*"
+            ],
+            "@errors/*": [
+                "src/core/errors/*"
+            ],
+            "@models/*": [
+                "src/core/models/*"
+            ],
+            "@states/*": [
+                "src/core/states/*"
+            ],
+            "@reports/*": [
+                "src/reports/*"
+            ],
+            "@adapters/*": [
+                "src/adapters/*"
+            ],
+            "@directives/*": [
+                "src/directives/*"
+            ],
+            "@services/*": [
+                "src/core/services/*"
+            ],
+            "@providers/*": [
+                "src/core/providers/*"
+            ],
+            "@components/*": [
+                "src/components/*"
+            ],
+            "@configuration/*": [
+                "src/configuration/*"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*.ts",
+        "includes/*.ts"
+    ],
+    "exclude": [
+        "dist",
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}

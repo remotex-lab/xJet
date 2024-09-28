@@ -1,0 +1,67 @@
+{
+    "name": "@remotex-labs/xjet",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "author": "Garefild",
+    "version": "1.0.0-beta.0",
+    "license": "Mozilla Public License Version 2.0",
+    "description": "xJet: Run Automated Tests Anywhere, Effortlessly",
+    "homepage": "https://github.com/remotex-lab/jet",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/remotex-lab/jet.git"
+    },
+    "bugs": {
+        "url": "https://github.com/remotex-lab/jet/issues"
+    },
+    "keywords": [
+        "jet",
+        "xjet",
+        "test",
+        "jest",
+        "mocha",
+        "testing",
+        "mocking",
+        "jasmine",
+        "coverage"
+    ],
+    "engines": {
+        "node": ">=20"
+    },
+    "files": [
+        "man",
+        "dist",
+        "LICENSE",
+        "README.md"
+    ],
+    "bin": {
+        "jet": "dist/index.js",
+        "xjet": "dist/index.js",
+        "xJet": "dist/index.js"
+    },
+    "scripts": {
+        "dev": "xbuild -d",
+        "lint": "xbuild --tc && eslint . -c ./eslint.config.mjs",
+        "build": "xbuild",
+        "test": "jest",
+        "test:coverage": "jest --coverage",
+        "ci:test": "jest",
+        "ci:clean": "rm -rf ./dist",
+        "ci:build": "npm run build"
+    },
+    "devDependencies": {
+        "jest": "^29.7.0",
+        "eslint": "^9.11.1",
+        "typescript-eslint": "^8.7.0",
+        "eslint-plugin-jsdoc": "^50.3.0",
+        "@swc/jest": "^0.2.36",
+        "@types/jest": "^29.5.13",
+        "@types/node": "^22.7.4",
+        "@remotex-labs/xbuild": "^1.2.0"
+    },
+    "dependencies": {
+        "yargs": "^17.7.2",
+        "esbuild": "^0.24.0",
+        "@remotex-labs/xmap": "^1.1.0"
+    }
+}
