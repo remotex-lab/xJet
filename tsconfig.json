@@ -1,0 +1,56 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "target": "ESNext",
+        "module": "ESNext",
+        "baseUrl": "src",
+        "outDir": "dist",
+        "rootDir": ".",
+        "declaration": true,
+        "skipLibCheck": true,
+        "importHelpers": true,
+        "isolatedModules": false,
+        "esModuleInterop": false,
+        "moduleDetection": "force",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": [
+            "DOM",
+            "ESNext"
+        ],
+        "types": [
+            "node"
+        ],
+        "paths": {
+            "@errors/*": [
+                "errors/*"
+            ],
+            "@reports/*": [
+                "reports/*"
+            ],
+            "@adapters/*": [
+                "adapters/*"
+            ],
+            "@services/*": [
+                "services/*"
+            ],
+            "@components/*": [
+                "components/*"
+            ],
+            "@configuration/*": [
+                "configuration/*"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*.ts",
+        "includes/*.ts"
+    ],
+    "exclude": [
+        "dist",
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}

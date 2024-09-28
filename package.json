@@ -1,0 +1,84 @@
+{
+    "name": "@remotex-labs/xjet",
+    "main": "dist/esm/index.js",
+    "type": "module",
+    "types": "dist/index.d.ts",
+    "module": "./dist/esm/index.js",
+    "author": "Garefild",
+    "version": "1.0.0-local",
+    "license": "Mozilla Public License Version 2.0",
+    "description": "xJet: Run Automated Tests Anywhere, Effortlessly",
+    "homepage": "https://github.com/remotex-lab/jet",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/remotex-lab/jet.git"
+    },
+    "bugs": {
+        "url": "https://github.com/remotex-lab/jet/issues"
+    },
+    "keywords": [
+        "jet",
+        "xjet",
+        "test",
+        "jest",
+        "mocha",
+        "watch",
+        "testing",
+        "mocking",
+        "jasmine",
+        "coverage",
+        "typescript"
+    ],
+    "engines": {
+        "node": ">=20"
+    },
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "import": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/esm/index.js"
+            },
+            "require": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            }
+        }
+    },
+    "files": [
+        "man",
+        "dist",
+        "LICENSE",
+        "README.md"
+    ],
+    "bin": {
+        "jet": "dist/esm/index.js",
+        "xjet": "dist/esm/index.js",
+        "xJet": "dist/esm/index.js"
+    },
+    "scripts": {
+        "dev": "xbuild -w",
+        "lint": "xbuild --tc && eslint . -c ./eslint.config.mjs",
+        "build": "xbuild",
+        "test": "jest",
+        "test:coverage": "jest --coverage",
+        "ci:test": "jest",
+        "ci:clean": "rm -rf ./dist",
+        "ci:build": "npm run build"
+    },
+    "devDependencies": {
+        "jest": "^29.7.0",
+        "eslint": "^9.17.0",
+        "typescript-eslint": "^8.18.1",
+        "eslint-plugin-jsdoc": "^50.6.1",
+        "@swc/jest": "^0.2.37",
+        "@types/jest": "^29.5.14",
+        "@types/node": "^22.10.2",
+        "@remotex-labs/xbuild": "^1.4.0"
+    },
+    "dependencies": {
+        "yargs": "^17.7.2",
+        "esbuild": "^0.24.0",
+        "@remotex-labs/xmap": "^2.0.4"
+    }
+}
