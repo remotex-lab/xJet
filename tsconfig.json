@@ -1,0 +1,62 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "target": "ESNext",
+        "module": "ESNext",
+        "outDir": "dist",
+        "baseUrl": "src",
+        "rootDir": ".",
+        "declaration": true,
+        "skipLibCheck": true,
+        "importHelpers": true,
+        "esModuleInterop": true,
+        "isolatedModules": false,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "emitDeclarationOnly": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": [
+            "esnext"
+        ],
+        "types": [
+            "node"
+        ],
+        "paths": {
+            "@global/*": [
+                "global/*"
+            ],
+            "@errors/*": [
+                "core/errors/*"
+            ],
+            "@services/*": [
+                "core/services/*"
+            ],
+            "@providers/*": [
+                "core/providers/*"
+            ],
+            "@interfaces/*": [
+                "core/interfaces/*"
+            ],
+            "@adapters/*": [
+                "core/adapters/*"
+            ],
+            "@components/*": [
+                "components/*"
+            ],
+            "@configuration/*": [
+                "configuration/*"
+            ]
+        }
+    },
+    "include": [
+        "src/index.ts",
+        "src/bin/index.ts",
+        "includes/global.d.ts"
+    ],
+    "exclude": [
+        "dist",
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}
