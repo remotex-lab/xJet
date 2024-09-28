@@ -1,0 +1,73 @@
+{
+    "name": "@remotex-labs/xjet",
+    "type": "module",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "module": "dist/index.js",
+    "author": "Garefild",
+    "version": "1.0.0-local",
+    "license": "Mozilla Public License Version 2.0",
+    "description": "xJet: Run Automated Tests Anywhere, Effortlessly",
+    "homepage": "https://github.com/remotex-lab/jet",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/remotex-lab/jet.git"
+    },
+    "bugs": {
+        "url": "https://github.com/remotex-lab/jet/issues"
+    },
+    "keywords": [
+        "jet",
+        "xjet",
+        "test",
+        "jest",
+        "mocha",
+        "watch",
+        "testing",
+        "mocking",
+        "jasmine",
+        "coverage",
+        "typescript"
+    ],
+    "engines": {
+        "node": ">=20"
+    },
+    "files": [
+        "dist",
+        "LICENSE",
+        "README.md"
+    ],
+    "bin": {
+        "jet": "dist/index.js",
+        "xjet": "dist/index.js",
+        "xJet": "dist/index.js"
+    },
+    "scripts": {
+        "dev": "xbuild -w",
+        "lint": "xbuild --tc && eslint . -c ./eslint.config.mjs",
+        "build": "xbuild",
+        "test": "jest",
+        "test:coverage": "jest --coverage",
+        "ci:test": "jest",
+        "ci:clean": "rm -rf ./dist",
+        "ci:build": "npm run build",
+        "ci:docs": "typedoc --entryPoints src/index.ts src/banner.ts --out ./docs --validation.notExported false"
+    },
+    "devDependencies": {
+        "@swc/jest": "^0.2.37",
+        "@types/node": "^22.10.7",
+        "@types/jest": "^29.5.14",
+        "eslint": "^9.18.0",
+        "jest": "^29.7.0",
+        "typedoc": "^0.27.6",
+        "typescript-eslint": "^8.21.0",
+        "eslint-plugin-tsdoc": "^0.4.0",
+        "@remotex-labs/xbuild": "^1.5.2"
+    },
+    "dependencies": {
+        "yargs": "^17.7.2",
+        "esbuild": "^0.24.0",
+        "typescript": "^5.7.3",
+        "@remotex-labs/xmap": "^2.0.4"
+    }
+}
