@@ -1,0 +1,74 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "target": "ESNext",
+        "module": "ESNext",
+        "outDir": "dist",
+        "baseUrl": "src",
+        "rootDir": ".",
+        "declaration": true,
+        "skipLibCheck": true,
+        "importHelpers": true,
+        "esModuleInterop": true,
+        "isolatedModules": false,
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "emitDeclarationOnly": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": [
+            "esnext"
+        ],
+        "types": [
+            "node"
+        ],
+        "paths": {
+            "@ui/*": [
+                "ui/*"
+            ],
+            "@shared/*": [
+                "shared/*"
+            ],
+            "@schema/*": [
+                "schema/*"
+            ],
+            "@errors/*": [
+                "errors/*"
+            ],
+            "@reports/*": [
+                "reports/*"
+            ],
+            "@targets/*": [
+                "targets/*"
+            ],
+            "@handler/*": [
+                "handler/*"
+            ],
+            "@services/*": [
+                "services/*"
+            ],
+            "@providers/*": [
+                "providers/*"
+            ],
+            "@interfaces/*": [
+                "interfaces/*"
+            ],
+            "@components/*": [
+                "components/*"
+            ],
+            "@configuration/*": [
+                "configuration/*"
+            ]
+        }
+    },
+    "include": [
+        "src/index.ts",
+        "src/bin/index.ts",
+        "includes/global.d.ts"
+    ],
+    "exclude": [
+        "dist",
+        "**/*.spec.ts",
+        "node_modules",
+    ]
+}
