@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "target": "ESNext",
+        "module": "ESNext",
+        "outDir": "dist",
+        "baseUrl": "src",
+        "rootDir": ".",
+        "declaration": true,
+        "skipLibCheck": true,
+        "importHelpers": true,
+        "esModuleInterop": true,
+        "isolatedModules": false,
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "emitDeclarationOnly": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": [
+            "esnext"
+        ],
+        "types": [
+            "node"
+        ],
+        "paths": {
+            "@providers/*": [
+                "providers/*"
+            ],
+            "@components/*": [
+                "components/*"
+            ]
+        }
+    },
+    "include": [
+        "xbuild.config.ts",
+        "includes/global.d.ts"
+    ],
+    "exclude": [
+        "dist",
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}
