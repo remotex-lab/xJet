@@ -24,11 +24,20 @@
             "node"
         ],
         "paths": {
+            "@reports/*": [
+                "reports/*"
+            ],
             "@adapters/*": [
                 "adapters/*"
             ],
-            "@reports/*": [
-                "reports/*"
+            "@services/*": [
+                "services/*"
+            ],
+            "@components/*": [
+                "components/*"
+            ],
+            "@configuration/*": [
+                "configuration/*"
             ]
         }
     },

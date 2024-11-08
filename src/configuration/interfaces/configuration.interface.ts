@@ -6,6 +6,28 @@ import type { ReporterInterface } from '@reports/interfaces/report.interface';
 import type { AdapterInit, AdapterRequestType } from '@adapters/interfaces/adapter.interface';
 
 /**
+ * Defines the valid types for specifying how esbuild should handle packages in the testing framework.
+ *
+ * The value can either be `'bundle'`, which means the package will be bundled with the test code,
+ * or `'external'`, meaning the package will not be bundled and will be loaded externally.
+ */
+
+export type PackagesType = 'bundle' | 'external';
+
+/**
+ * Defines the valid verbosity levels for logging in the testing framework.
+ *
+ * The log level can be set to control the amount of logging information:
+ * - `'silent'`: No output will be shown.
+ * - `'error'`: Only errors will be displayed.
+ * - `'warn'`: Warnings and errors will be shown.
+ * - `'info'`: General information, along with warnings and errors.
+ * - `'debug'`: Detailed debugging output will be shown, including all other log levels.
+ */
+
+export type LogLevelType = 'silent' | 'error' | 'warn' | 'info' | 'debug';
+
+/**
  * Interface representing the configuration options for the Jet tests.
  *
  * This interface defines the configuration options for running the tests, including file patterns, logging settings,
@@ -57,7 +79,7 @@ export interface ConfigurationInterface {
      * - `'debug'`: Detailed debugging output, useful for development
      */
 
-    logLevel: 'silent' | 'error' | 'warn' | 'info' | 'debug';
+    logLevel: LogLevelType;
 
     /**
      * An array of external packages that should not be bundled with the tests.
@@ -73,7 +95,7 @@ export interface ConfigurationInterface {
      * - `'external'`: Packages are marked as external and not bundled.
      */
 
-    packages: 'bundle' | 'external',
+    packages: PackagesType;
 
     /**
      * Function to initialize the adapter, executed before tests run.

@@ -76,5 +76,4 @@ export interface ReporterInterface {
      */
 
     onComplete(): void;
-    onComplete(): void;
 }
