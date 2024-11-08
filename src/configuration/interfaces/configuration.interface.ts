@@ -28,6 +28,28 @@ export type PackagesType = 'bundle' | 'external';
 export type LogLevelType = 'silent' | 'error' | 'warn' | 'info' | 'debug';
 
 /**
+ * Represents a module with its exports and an optional default export.
+ *
+ * This interface provides a structure to define and interact with the exports of a module.
+ * It includes both named and default exports, where default exports are of a specific type.
+ */
+
+export interface ModuleInterface {
+
+    /**
+     * An object representing the exports of the module.
+     * The keys are strings representing export names, and the values can be of any type.
+     *
+     * @property {ConfigurationInterface} [default] - An optional default export of type `ConfigurationInterface`.
+     */
+
+    exports: {
+        [key: string]: unknown;
+        default?: ConfigurationInterface;
+    };
+}
+
+/**
  * Interface representing the configuration options for the Jet tests.
  *
  * This interface defines the configuration options for running the tests, including file patterns, logging settings,
@@ -60,14 +82,14 @@ export interface ConfigurationInterface {
      * './tests'` or `'./src/**\/*'
      */
 
-    rootDir: string;
+    root: string;
 
     /**
      * Enables or disables watch mode for test execution. When `true`, tests
      * will re-run automatically upon detecting changes in the files.
      */
 
-    watchMode: boolean;
+    watch: boolean;
 
     /**
      * Sets the logging verbosity level for test output and diagnostic information.
@@ -116,3 +138,9 @@ export interface ConfigurationInterface {
 
     reporter: ReporterInterface;
 }
+
+/**
+ * Represents a partial configuration type based on the `ConfigurationInterface`.
+ */
+
+export type PartialConfigurationsType = Partial<ConfigurationInterface>;
