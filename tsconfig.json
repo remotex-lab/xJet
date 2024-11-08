@@ -24,7 +24,12 @@
             "node"
         ],
         "paths": {
-
+            "@adapters/*": [
+                "adapters/*"
+            ],
+            "@reports/*": [
+                "reports/*"
+            ]
         }
     },
     "include": [
