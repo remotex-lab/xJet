@@ -4,12 +4,15 @@
  * Import will remove at compile time
  */
 
+import type { VMRuntimeError } from '@errors/vm-runtime.error';
 import type { ArgvInterface } from '@services/interfaces/cli.interface';
 
 /**
  * Imports
  */
 
+import '@errors/stack.error';
+import '@errors/uncaught.error';
 import { argvParser } from '@services/cli.service';
 import { configuration } from './providers/configuration.provider';
 
@@ -32,7 +35,6 @@ async function run() {
  * Run
  */
 
-// run().catch((error: VMRuntimeError & xBuildError) => {
-run().catch((error: any) => {
+run().catch((error: VMRuntimeError) => {
     console.error(error.stack);
 });

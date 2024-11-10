@@ -2,6 +2,7 @@
  * Import will remove at compile time
  */
 
+import type { ErrorType } from '@errors/interfaces/stack.interface';
 import type { ConfigurationInterface, ModuleInterface } from '@configuration/interfaces/configuration.interface';
 
 /**
@@ -11,6 +12,7 @@ import type { ConfigurationInterface, ModuleInterface } from '@configuration/int
 import { createRequire } from 'module';
 import { SourceService } from '@remotex-labs/xmap';
 import { sandboxExecute } from '@services/vm.service';
+import { VMRuntimeError } from '@errors/vm-runtime.error';
 import { transpileFile } from '@services/transpiler.service';
 
 /**
@@ -55,8 +57,7 @@ function wrapFunctionWithSourceMap<T extends (...args: unknown[]) => unknown>(
         try {
             return fn(...args) as ReturnType<T>;
         } catch (error) {
-            // throw new VMRuntimeError(<Error> error, sourceMap);
-            throw error;
+            throw new VMRuntimeError(<Error> error, sourceMap);
         }
     }) as T;
 }
@@ -119,8 +120,7 @@ export async function parseConfigurationFile(file: string): Promise<Configuratio
             module
         });
     } catch (error: unknown) {
-        throw error; // Todo VMError with VMRuntimeError and ErrorType
-        // throw new VMRuntimeError(<ErrorType> error, source);
+        throw new VMRuntimeError(<ErrorType> error, source);
     }
 
     return wrapConfigFunctionsWithSourcemap(<ConfigurationInterface> module.exports.default, source);

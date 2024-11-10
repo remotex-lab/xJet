@@ -11,6 +11,7 @@ import type { transpileFileInterface } from '@services/interfaces/transpiler.int
 
 import { cwd } from 'process';
 import { build } from 'esbuild';
+import { xJetError } from '@errors/xjet.error';
 
 /**
  * Default build options for esbuild bundler in RemoteX framework.
@@ -48,7 +49,7 @@ export function extractSourceMap(dataString: string): transpileFileInterface {
     const match = dataString.match(sourceMapRegex);
 
     if (!match || !match[1]) {
-        throw new Error('Source map URL not found in the output.'); // Todo xBuildError xJet
+        throw new xJetError('Source map URL not found in the output.');
     }
 
     const sourceMap = match[1];
