@@ -2,7 +2,7 @@
     "name": "@remotex-labs/xjet",
     "type": "module",
     "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "types": "dist/banner.d.ts",
     "module": "dist/index.js",
     "author": "Garefild",
     "version": "1.0.0-local",
@@ -51,22 +51,22 @@
         "ci:test": "jest",
         "ci:clean": "rm -rf ./dist",
         "ci:build": "npm run build",
-        "ci:docs": "typedoc --entryPoints src/index.ts src/banner.ts --out ./docs --validation.notExported false"
+        "ci:docs": "typedoc --entryPoints src/index.ts src/banner.ts --out ./docs --validation.notExported false --includeVersion"
     },
     "devDependencies": {
-        "@swc/jest": "^0.2.37",
-        "@types/node": "^22.10.7",
-        "@types/jest": "^29.5.14",
-        "eslint": "^9.18.0",
         "jest": "^29.7.0",
+        "eslint": "^9.18.0",
         "typedoc": "^0.27.6",
         "typescript-eslint": "^8.21.0",
         "eslint-plugin-tsdoc": "^0.4.0",
+        "@swc/jest": "^0.2.37",
+        "@types/node": "^22.10.7",
+        "@types/jest": "^29.5.14",
         "@remotex-labs/xbuild": "^1.5.2"
     },
     "dependencies": {
         "yargs": "^17.7.2",
-        "esbuild": "^0.24.0",
+        "esbuild": "^0.25.0",
         "typescript": "^5.7.3",
         "@remotex-labs/xmap": "^2.0.4"
     }

@@ -9,7 +9,7 @@ import type { xBuildConfig } from '@remotex-labs/xbuild';
  */
 
 import { version } from 'process';
-import pkg from './package.json' with { type: 'json'};
+import pkg from './package.json' with { type: 'json' };
 
 /**
  * Config build
@@ -30,7 +30,6 @@ const config: Array<xBuildConfig> = [
             platform: 'node',
             packages: 'external',
             sourcemap: true,
-            sourceRoot: `https://github.com/remotex-lab/xjet/tree/v${ pkg.version }/`,
             entryPoints: {
                 index: 'src/index.ts'
             }

@@ -6,7 +6,6 @@
         "outDir": "dist",
         "baseUrl": "src",
         "rootDir": ".",
-        "outFile": "./dist/index.d.ts",
         "declaration": true,
         "skipLibCheck": true,
         "importHelpers": true,
@@ -22,10 +21,22 @@
         ],
         "types": [
             "node"
-        ]
+        ],
+        "paths": {
+            "@core/*": [
+                "core/*"
+            ],
+            "@global/*": [
+                "global/*"
+            ],
+            "@interfaces/*": [
+                "interfaces/*"
+            ]
+        }
     },
     "include": [
-        "src/**/*.ts"
+        "src/index.ts",
+        "src/banner.ts"
     ],
     "exclude": [
         "dist",
