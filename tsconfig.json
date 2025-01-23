@@ -22,10 +22,22 @@
         ],
         "types": [
             "node"
-        ]
+        ],
+        "paths": {
+            "@core/*": [
+                "core/*"
+            ],
+            "@global/*": [
+                "global/*"
+            ],
+            "@interfaces/*": [
+                "interfaces/*"
+            ]
+        }
     },
     "include": [
-        "src/**/*.ts"
+        "src/index.ts",
+        "src/banner.ts"
     ],
     "exclude": [
         "dist",
