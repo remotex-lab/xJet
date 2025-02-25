@@ -4,6 +4,7 @@
  * Imports
  */
 
+import { parseArguments } from '@services/cli.service';
 import { bannerComponent } from '@components/banner.component';
 
 /**
@@ -11,3 +12,21 @@ import { bannerComponent } from '@components/banner.component';
  */
 
 console.log(bannerComponent());
+
+/**
+ * Main
+ */
+
+async function main(argv: Array<string>) {
+    const cli = parseArguments(argv);
+    console.log(cli);
+}
+
+/**
+ * Run entrypoint of xJet cli
+ */
+
+main(process.argv).catch((error: unknown) => {
+    console.error(error);
+    process.exit(1);
+});
