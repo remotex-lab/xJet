@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 
-import { parseArguments } from '../services/cli.service';
-import * as process from 'node:process';
+/**
+ * Imports
+ */
 
-const res = parseArguments(process.argv);
-console.log(res);
-console.log(res.config);
+import { bannerComponent } from '@components/banner.component';
+
+/**
+ * Banner
+ */
+
+console.log(bannerComponent());
