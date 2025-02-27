@@ -6,6 +6,7 @@
 
 import { parseArguments } from '@services/cli.service';
 import { bannerComponent } from '@components/banner.component';
+import { configuration } from '@providers/configuration.provider';
 
 /**
  * Banner
@@ -19,7 +20,9 @@ console.log(bannerComponent());
 
 async function main(argv: Array<string>) {
     const cli = parseArguments(argv);
-    console.log(cli);
+    const config = await configuration(cli.config, cli);
+
+    console.log(config);
 }
 
 /**
