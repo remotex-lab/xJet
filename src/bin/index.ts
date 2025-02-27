@@ -4,6 +4,7 @@
  * Imports
  */
 
+import '@errors/uncaught.error';
 import { parseArguments } from '@services/cli.service';
 import { bannerComponent } from '@components/banner.component';
 import { configuration } from '@providers/configuration.provider';
