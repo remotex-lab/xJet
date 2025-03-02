@@ -7,6 +7,7 @@
 import '@errors/uncaught.error';
 import { parseArguments } from '@services/cli.service';
 import { bannerComponent } from '@components/banner.component';
+import { resolveSpecFiles } from '@components/spec.component';
 import { configuration } from '@providers/configuration.provider';
 
 /**
@@ -22,8 +23,11 @@ console.log(bannerComponent());
 async function main(argv: Array<string>) {
     const cli = parseArguments(argv);
     const config = await configuration(cli.config, cli);
+    const specFiles = await resolveSpecFiles(config);
 
-    console.log(config);
+    for (const file of Object.keys(specFiles)) {
+
+    }
 }
 
 /**
