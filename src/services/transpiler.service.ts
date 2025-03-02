@@ -4,7 +4,7 @@
 
 import type { EntryPoints } from '@remotex-labs/xbuild';
 import type { BuildOptions, BuildResult, Metafile } from 'esbuild';
-import type { TranspileFileInterface } from '@services/interfaces/transpiler-service.interface';
+import type { TranspileFileInterface, TranspileFileTypes } from '@services/interfaces/transpiler-service.interface';
 
 /**
  * Imports
@@ -12,6 +12,7 @@ import type { TranspileFileInterface } from '@services/interfaces/transpiler-ser
 
 import { cwd } from 'process';
 import { build } from 'esbuild';
+import { xJetError } from '@errors/xjet.error';
 
 /**
  * Default configuration options for the transpile process.
@@ -85,17 +86,16 @@ export const defaultBuildOptions: BuildOptions = {
  * @since 1.0.0
  */
 
-export async function transpileFiles(filePaths: EntryPoints, buildOptions: BuildOptions = {}): Promise<Array<TranspileFileInterface>> {
-    const options: BuildOptions = {
+export async function transpileFiles(filePaths: EntryPoints, buildOptions: BuildOptions = {}): Promise<TranspileFileTypes> {
+    const result = await build({
         absWorkingDir: cwd(),
         ...defaultBuildOptions,
         ...buildOptions,
         metafile: true,
         entryPoints: filePaths
-    };
+    }) as BuildResult<BuildOptions & Metafile>;
 
-    const result = await build(options) as BuildResult<BuildOptions & Metafile>;
-    const groupedFiles = result.outputFiles!.reduce((acc, file) => {
+    return result.outputFiles!.reduce((acc, file) => {
         const basePath = file.path.replace(/\.(map)$/, '');
         if (!acc[basePath]) {
             acc[basePath] = <TranspileFileInterface> {};
@@ -108,11 +108,7 @@ export async function transpileFiles(filePaths: EntryPoints, buildOptions: Build
         }
 
         return acc;
-    }, {} as Record<string,TranspileFileInterface>);
-
-    return Object.values(groupedFiles).filter(
-        entry => entry.code && entry.sourceMap
-    ) as Array<TranspileFileInterface>;
+    }, {} as Record<string, TranspileFileInterface>);
 }
 
 /**
@@ -149,9 +145,10 @@ export async function transpileFiles(filePaths: EntryPoints, buildOptions: Build
  */
 
 export async function transpileFile(filePath: string, buildOptions: BuildOptions = {}): Promise<TranspileFileInterface> {
-    const result = (await transpileFiles([ filePath ], buildOptions)).pop() as TranspileFileInterface;
+    const files = await transpileFiles([ filePath ], buildOptions);
+    const result = Object.values(files)[0];
     if (!result) {
-        throw new Error('Failed to transpile file: No output generated');
+        throw new xJetError('Failed to transpile file: No output generated');
     }
 
     return result;

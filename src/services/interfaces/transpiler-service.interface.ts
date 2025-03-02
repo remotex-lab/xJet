@@ -13,3 +13,19 @@ export interface TranspileFileInterface {
     code: string;
     sourceMap: string;
 }
+
+/**
+ * Represents a mapping of file types to their corresponding transpile file interfaces.
+
+ * @remarks
+ * This type alias is a utility definition that facilitates organizing and mapping various file type keys
+ * (represented as strings) to their associated `TranspileFileInterface`.
+ * It is widely used in scenarios
+ * where file transpilation processes depend on specific behaviors or properties associated with each type.
+ *
+ * @see TranspileFileInterface
+ *
+ * @since 1.0.0
+ */
+
+export type TranspileFileTypes = Record<string, TranspileFileInterface>;
