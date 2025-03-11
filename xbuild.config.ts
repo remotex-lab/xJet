@@ -7,7 +7,6 @@ import type { xBuildConfig } from '@remotex-labs/xbuild';
 /**
  * Imports
  */
-
 import { version } from 'process';
 import pkg from './package.json' with { type: 'json' };
 
@@ -32,7 +31,7 @@ const config: Array<xBuildConfig> = [
             sourcemap: true,
             sourceRoot: `https://github.com/remotex-lab/xJet/tree/v${ pkg.version }/`,
             entryPoints: {
-                'index': 'src/index.ts',
+                'index': 'src/index.ts', // todo package internal
                 'bin/index': 'src/bin/index.ts'
             }
         }

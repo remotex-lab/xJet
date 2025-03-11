@@ -522,6 +522,7 @@ export class MockState<ReturnType = unknown, Args extends Array<unknown> = unkno
         return this;
     }
 
+    // todo clear all mocks in xJet.
     // todo: withImplementation
 
     /**
