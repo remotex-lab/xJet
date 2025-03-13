@@ -7,6 +7,7 @@ import { join } from 'path';
 import { formatErrorCode, highlightCode, SourceService } from '@remotex-labs/xmap';
 import { Colors } from '@components/colors.component';
 import { createRequire } from 'module';
+import { VMRuntimeError } from '@errors/vm-runtime.error';
 
 export class SuitesService {
 
@@ -40,8 +41,6 @@ export class SuitesService {
                     setInterval
                 });
             } catch (e: any) {
-                console.log(e);
-
                 if(e.location) {
                     console.log(e.message);
 
@@ -57,6 +56,9 @@ export class SuitesService {
                     });
                     console.log(i);
                 }
+
+                console.log('xxx');
+                throw new VMRuntimeError(e, u, true);
             }
         });
     }

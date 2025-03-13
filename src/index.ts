@@ -5,7 +5,7 @@
 import '@global/components/polyfill.component';
 import { spyOn } from '@global/mock/spy.mock';
 import { fnMock, mock } from '@global/mock/fn.mock';
-import * as x2 from 'expect';
+// import * as x2 from 'expect';
 import  { testDirective } from '@global/directives/test.directive';
 import  { describeDirective } from '@global/directives/describe.directive';
 import {
@@ -38,10 +38,9 @@ declare global {
     const afterEach: typeof afterEachDirective;
     const beforeAll: typeof beforeAllDirective;
     const beforeEach: typeof beforeEachDirective;
-    const expect: x2.Expect;
+    // const expect: x2.Expect;
 }
 
-const x = globalThis as any;
 
 // Initialize global API
 const setupGlobals = () => {
@@ -63,7 +62,7 @@ const setupGlobals = () => {
     globals.afterEach = afterEachDirective;
     globals.beforeAll = beforeAllDirective;
     globals.beforeEach = beforeEachDirective;
-    globals.expect = x2.expect;
+    // globals.expect = x2.expect;
 };
 
 setupGlobals();
