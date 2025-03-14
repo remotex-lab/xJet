@@ -11,8 +11,7 @@ import type { TranspileFileTypes } from '@services/interfaces/transpiler-service
 import { relative } from 'path';
 import { SourceService } from '@remotex-labs/xmap';
 import { BaseAdapter } from '@adapters/base.adapter';
-import { sandboxExecute } from '@services/vm.service';
-import { VMRuntimeError } from '@errors/vm-runtime.error';
+import { sandboxExecute } from '@services/vm.service';;
 import { frameworkProvider } from '@providers/framework.provider';
 
 /**
@@ -97,20 +96,13 @@ export class LocalAdapter extends BaseAdapter {
         const suiteId = this.generateId();
         this.messageHandler.setSuiteSource(suiteId, sourceService);
 
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve) => {
             try {
                 this.runningSuites.set(suiteId, resolve);
-                this.executeInSandbox(testCode, testFilePath, suiteId);
+                await this.executeInSandbox(testCode, testFilePath, suiteId);
             } catch (error) {
-                this.completeTask(suiteId);
-
-                // todo runtime error
-                const runtimeError = new VMRuntimeError(error as VMRuntimeError, sourceService);
-                console.log(runtimeError);
-                if (this.config.bail)
-                    reject();
-                else
-                    resolve();
+                this.messageHandler.handleSuiteError(suiteId, { error }, sourceService);
+                resolve();
             }
         });
     }
@@ -128,7 +120,7 @@ export class LocalAdapter extends BaseAdapter {
      * @since 1.0.0
      */
 
-    private executeInSandbox(testCode: string, testFilePath: string, suiteId: string): void {
+    private async executeInSandbox(testCode: string, testFilePath: string, suiteId: string): Promise<void> {
         const sandboxContext = {
             Buffer,
             setTimeout,
@@ -146,6 +138,6 @@ export class LocalAdapter extends BaseAdapter {
         };
 
         const sandboxOptions = { filename: testFilePath };
-        sandboxExecute(testCode, sandboxContext, sandboxOptions);
+        await sandboxExecute(testCode, sandboxContext, sandboxOptions);
     }
 }

@@ -74,7 +74,7 @@ const footer = {
           Buffer.from([2]),
           Buffer.from(__XJET__.suiteId),
           Buffer.from(__XJET__.runnerId),
-          Buffer.from(JSON.stringify(serializedError))
+          Buffer.from(JSON.stringify({ error: serializedError }))
         ]));
     }`
 };

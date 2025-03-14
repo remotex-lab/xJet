@@ -2,19 +2,21 @@
  * Import will remove at compile time
  */
 
-import { formatErrorCode, highlightCode, type SourceService } from '@remotex-labs/xmap';
-import type { MessageHandlerInterface, SuiteFinishCallbackType } from './interfaces/message-handler.interface';
+import { type SourceService } from '@remotex-labs/xmap';
+import type {
+    MessageHandlerInterface,
+    SuiteFinishCallbackType,
+    SuiteMessageInterface
+} from './interfaces/message-handler.interface';
 
 /**
  * Imports
  */
-
 import { Struct } from '@remotex-labs/xstruct';
-import { parseErrorStack } from '@remotex-labs/xmap';
 import { MessageType } from './constants/message-handler.constant';
-import { Colors } from '@components/colors.component';
 import { xJetError } from '@errors/xjet.error';
 import { ErrorHandler } from '@core/handler/error.handler';
+import type { VMRuntimeError } from '@errors/vm-runtime.error';
 
 export class MessageHandler {
     readonly suites: Map<string, SourceService> = new Map();
@@ -49,17 +51,22 @@ export class MessageHandler {
         }
     }
 
+    handleSuiteError(suiteId: string, data: SuiteMessageInterface, sourceMap: SourceService | undefined): void {
+        this.suiteFinishCallbackType(suiteId);
+        console.log(ErrorHandler(<VMRuntimeError> data.error, sourceMap!));
+    }
+
     private routeData(header: MessageHandlerInterface, data: unknown) {
         switch (header.type) {
             case MessageType.LOG:
                 break;
             case MessageType.TEST:
                 break;
-            case MessageType.SUITE: {
-                this.suiteFinishCallbackType(header.suiteId);
-                console.log(ErrorHandler(<Error> data, this.suites.get(header.suiteId)!));
+            case MessageType.SUITE:
+                this.handleSuiteError(
+                    header.suiteId, <SuiteMessageInterface> data, this.suites.get(header.suiteId)
+                );
                 break;
-            }
             case MessageType.DESCRIBE:
                 break;
         }

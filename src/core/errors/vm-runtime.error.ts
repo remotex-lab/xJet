@@ -54,8 +54,8 @@ export class VMRuntimeError extends BaseError {
      */
 
     constructor(private originalError: ErrorType, sourceMap: SourceService, includeFramework = false) {
-        if (originalError instanceof VMRuntimeError) {
-            return originalError;
+        if (originalError instanceof BaseError) {
+            return <VMRuntimeError> originalError;
         }
 
         // Pass the message to the base class Error
