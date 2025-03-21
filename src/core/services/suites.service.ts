@@ -158,7 +158,7 @@ export class SuitesService {
     private async watchForChanges(initialTranspiled: TranspileFileTypes): Promise<void> {
         try {
             let transpiled = initialTranspiled;
-            const watcher = watch(frameworkProvider.paths.root + '/asd/asd', { recursive: true });
+            const watcher = watch(frameworkProvider.paths.root, { recursive: true });
             await this.adapter.executeSuites(transpiled);
 
             for await (const { filename } of watcher) {

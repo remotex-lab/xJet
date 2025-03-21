@@ -9,7 +9,7 @@ import type { ErrorType } from '@components/interfaces/stack-component.interface
  * Imports
  */
 
-import { formatStacks } from '@components/stack.component';
+import { formatStacks, formatStringStacks } from '@components/stack.component';
 
 /**
  * A variable that stores the original implementation of the `Error.prepareStackTrace` function.
@@ -187,8 +187,12 @@ export abstract class BaseError extends Error {
 
     protected reformatStack(error: ErrorType, includeFramework = false): void {
         this.formattedStack = this.stack;
-        if (!error.callStacks)
+        if (!error.callStacks || !error.callStacks[0]) {
+            console.log('xxx');
+            this.formattedStack = formatStringStacks(error, includeFramework);
+
             return;
+        }
 
         this.formattedStack = formatStacks(error, error.callStacks, includeFramework);
     }

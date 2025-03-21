@@ -35,17 +35,3 @@ export interface StackContextInterface {
     activeNative: boolean;
     includeFramework: boolean;
 }
-
-/**
- * Represents a processed stack frame with enriched location and context information
- * for improved error reporting and debugging visualization.
- *
- * @since 1.0.0
- */
-
-export interface EnhancedFrameInterface {
-    line: number;
-    name: string;
-    column: number;
-    source: string;
-}
