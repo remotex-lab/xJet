@@ -30,7 +30,7 @@ const config: Array<xBuildConfig> = [
             platform: 'node',
             packages: 'external',
             sourcemap: true,
-            sourceRoot: `https://github.com/remotex-lab/xJet/tree/v${ pkg.version }/`,
+            sourceRoot: `https://github.com/remotex-lab/xJet/tree/v${ pkg.version }/dist/`,
             entryPoints: {
                 'bin/index': 'src/bin/index.ts'
             }
