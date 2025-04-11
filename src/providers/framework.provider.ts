@@ -440,7 +440,19 @@ export class FrameworkProvider {
 
     private initializeSourceService(sourceMap: string, path: string): SourceService {
         try {
-            return new SourceService(sourceMap, path.replace(/\.map$/, ''));
+            const service = new SourceService(sourceMap, path.replace(/\.map$/, ''));
+
+            // FIXME: Adding 'dist/' to sourceRoot is necessary as a workaround
+            // for esbuild's source map path resolution behavior. Esbuild uses '../'
+            // to navigate up one directory level in source maps, which breaks our
+            // expected path structure. This adjustment ensures proper source mapping.
+
+            // eslint-disable-next-line
+            (service as any).sourceRoot = service.sourceRoot
+                ? service.sourceRoot.replace(/dist\//, '')
+                : null;
+
+            return service;
         } catch (error) {
             throw new Error(
                 `${ SOURCE_SERVICE_INITIALIZATION_ERROR }: ${ error instanceof Error ? error.message : String(error) }`
