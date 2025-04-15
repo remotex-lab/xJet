@@ -195,7 +195,7 @@ export class DescribeModel {
      * @param describe - The child test describe to add
      *
      * @remarks
-     * When adding a nested describe, this method automatically:
+     * When adding nested describe, this method automatically:
      * - Sets up the parent-child relationship
      * - Propagates execution options and ancestry information from parent to child
      *
